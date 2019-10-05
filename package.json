@@ -8,7 +8,8 @@
     "*.scss"
   ],
   "scripts": {
-    "start": "npm run build && http-server dist",
+    "start": "webpack-dev-server --open --config webpack.config.js",
+    "start-http": "npm run build && http-server dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "build-prod": "webpack --env.NODE_ENV=local --env.production --progress",

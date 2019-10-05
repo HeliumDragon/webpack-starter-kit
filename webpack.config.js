@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -49,13 +49,14 @@ module.exports = env => {
         // both options are optional
         filename: devMode ? '[name].css' : '[name].[hash].css',
         chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-      }),
-      new WorkboxPlugin.GenerateSW({
-        // these options encourage the ServiceWorkers to get in there fast
-        // and not allow any straggling "old" SWs to hang around
-        clientsClaim: true,
-        skipWaiting: true
       })
+      // TODO set up to work in production env
+      // new WorkboxPlugin.GenerateSW({
+      //   // these options encourage the ServiceWorkers to get in there fast
+      //   // and not allow any straggling "old" SWs to hang around
+      //   clientsClaim: true,
+      //   skipWaiting: true
+      // })
     ],
     module: {
       rules: [
@@ -73,10 +74,7 @@ module.exports = env => {
             process.env.NODE_ENV !== 'production'
               ? { loader: 'style-loader', options: {} }
               : {
-                  loader: MiniCssExtractPlugin.loader,
-                  options: {
-                    hmr: process.env.NODE_ENV === 'development'
-                  }
+                  loader: MiniCssExtractPlugin.loader
                 },
             { loader: 'css-loader', options: {} },
             { loader: 'postcss-loader', options: {} },
