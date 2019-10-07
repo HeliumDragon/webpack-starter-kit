@@ -42,7 +42,8 @@ module.exports = env => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        title: 'Helium'
+        title: 'Helium',
+        template: 'index.html'
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
