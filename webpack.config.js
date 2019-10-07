@@ -42,7 +42,7 @@ module.exports = env => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        title: 'Helium',
+        title: 'your app',
         template: 'index.html'
       }),
       new MiniCssExtractPlugin({
